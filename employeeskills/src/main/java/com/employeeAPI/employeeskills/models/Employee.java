@@ -3,10 +3,7 @@ package com.employeeAPI.employeeskills.models;
 
 import org.hibernate.annotations.GenericGenerator;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Employee {
@@ -14,21 +11,22 @@ public class Employee {
             strategy = "uuid") String id;
     private String firstName;
     private String lastName;
-//    private Address address;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Address address;
     private String contactEmail;
     private String birthDate;
     private String hiredDate;
     private String role;
     private String businessUnit;
-    //  private Employee assignedTo;
+//  private Employee assignedTo;
 
 
-    public Employee(String firstName, String lastName, /*Address address,*/ String contactEmail,
+    public Employee(String firstName, String lastName, Address address, String contactEmail,
                     String birthDate, String hiredDate, String role, String businessUnit/*, Employee assignedTo*/) {
 
         this.firstName = firstName;
         this.lastName = lastName;
-//        this.address = address;
+        this.address = address;
         this.contactEmail = contactEmail;
         this.birthDate = birthDate;
         this.hiredDate = hiredDate;
@@ -39,12 +37,12 @@ public class Employee {
 
     public Employee(){}
 
-    public String getId() {
-        return id;
-    }
-
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getFirstName() {
@@ -63,13 +61,13 @@ public class Employee {
         this.lastName = lastName;
     }
 
-/*    public Address getAddress() {
+    public Address getAddress() {
         return address;
-    }*/
+    }
 
-/*    public void setAddress(Address address) {
+    public void setAddress(Address address) {
         this.address = address;
-    }*/
+    }
 
     public String getContactEmail() {
         return contactEmail;
