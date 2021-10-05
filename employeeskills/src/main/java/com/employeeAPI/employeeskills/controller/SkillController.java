@@ -65,9 +65,13 @@ class SkillController {
         }
     }
 
-/*
-    @DeleteMapping("/employees/{id}")
-    void deleteEmployee(@PathVariable String id) {
-        repository.deleteById(id);
-    }*/
+
+    @DeleteMapping("/employees/{employeeId}/skills/{skillId")
+    void deleteSkill(@PathVariable String employeeId,@PathVariable String skillId) {
+        Skill existingSkill = repository.findEmployeeSkillBySkillId(employeeId, skillId);
+        if (existingSkill != null) {
+                        throw new SkillNotFoundException(employeeId, skillId);
+                    }
+        repository.deleteById(skillId);
+    }
 }

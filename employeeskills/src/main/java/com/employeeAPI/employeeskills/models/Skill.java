@@ -14,6 +14,9 @@ public class Skill {
     private Field field;
     private int experience;
     private String summary;
+/*    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="employee_id")
+    private Employee employee;*/
 
     public Skill(Field field, int experience, String summary) {
         this.field = field;
