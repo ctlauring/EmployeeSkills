@@ -2,12 +2,13 @@ package com.employeeAPI.employeeskills.models;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Field {
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Skill> skills;
     private @Id
     @GeneratedValue(generator="system-uuid") @GenericGenerator(name="system-uuid",
             strategy = "uuid") String id;

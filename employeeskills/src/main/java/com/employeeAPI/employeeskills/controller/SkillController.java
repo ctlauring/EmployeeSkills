@@ -4,9 +4,8 @@ package com.employeeAPI.employeeskills.controller;
 import java.util.List;
 
 import com.employeeAPI.employeeskills.dao.SkillRepository;
-import com.employeeAPI.employeeskills.exceptions.EmployeeNotFoundException;
-import com.employeeAPI.employeeskills.models.Employee;
 import com.employeeAPI.employeeskills.models.Skill;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,17 +23,19 @@ class SkillController {
         this.repository = repository;
     }
 
-/*    @GetMapping("/employees/{employeeId}/skills")
+   @GetMapping("/employees/{employeeId}/skills")
     List<Skill> getSkillsByEmployeeId(@PathVariable String employeeId) {
         return repository.findByEmployeeId(employeeId);
-    }*/
-
-/*
-    @PostMapping("/employees")
-    Employee newEmployee(@RequestBody Employee newEmployee) {
-        return repository.save(newEmployee);
     }
 
+    @Transactional
+    @PostMapping("/employees/{employeeId}/skills")
+    Skill postSkill(@RequestBody Skill newSkill, @PathVariable String employeeId ) {
+        newSkill = repository.save(newSkill);
+        repository.addSkillToEmployee(newSkill.getId(), employeeId);
+        return newSkill;
+    }
+/*
     @GetMapping("/employees/{id}")
     Employee one(@PathVariable String id) {
 
