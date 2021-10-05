@@ -2,6 +2,8 @@ package com.employeeAPI.employeeskills.models;
 
 
 import org.hibernate.annotations.GenericGenerator;
+
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -18,12 +20,14 @@ public class Employee {
     private String hiredDate;
     private String role;
     private String businessUnit;
-//  private Employee assignedTo;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Skill> skills;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Employee assignedTo;
 
-
-    public Employee(String firstName, String lastName, Address address, String contactEmail,
-                    String birthDate, String hiredDate, String role, String businessUnit/*, Employee assignedTo*/) {
-
+    //create employee
+    public Employee(String firstName, String lastName, Address address, String contactEmail, String birthDate,
+                    String hiredDate, String role, String businessUnit, List<Skill> skills, Employee assignedTo) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -32,7 +36,31 @@ public class Employee {
         this.hiredDate = hiredDate;
         this.role = role;
         this.businessUnit = businessUnit;
-//        this.assignedTo = assignedTo;
+        this.skills = skills;
+        this.assignedTo = assignedTo;
+    }
+    //create employee without assignment
+    public Employee(String firstName, String lastName, Address address, String contactEmail, String birthDate, String hiredDate, String role, String businessUnit, List<Skill> skills) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.contactEmail = contactEmail;
+        this.birthDate = birthDate;
+        this.hiredDate = hiredDate;
+        this.role = role;
+        this.businessUnit = businessUnit;
+        this.skills = skills;
+    }
+    //create employee without skills or assignment
+    public Employee(String firstName, String lastName, Address address, String contactEmail, String birthDate, String hiredDate, String role, String businessUnit) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.contactEmail = contactEmail;
+        this.birthDate = birthDate;
+        this.hiredDate = hiredDate;
+        this.role = role;
+        this.businessUnit = businessUnit;
     }
 
     public Employee(){}
@@ -109,15 +137,15 @@ public class Employee {
         this.businessUnit = businessUnit;
     }
 
-/*    public Employee getAssignedTo() {
+    public Employee getAssignedTo() {
         return assignedTo;
-    }*/
+    }
 
-/*
+
     public void setAssignedTo(Employee assignedTo) {
         this.assignedTo = assignedTo;
     }
-*/
+
 
     @Override
     public boolean equals(Object o) {
