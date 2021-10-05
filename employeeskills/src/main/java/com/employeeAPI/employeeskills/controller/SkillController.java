@@ -4,6 +4,7 @@ package com.employeeAPI.employeeskills.controller;
 import java.util.List;
 
 import com.employeeAPI.employeeskills.dao.SkillRepository;
+import com.employeeAPI.employeeskills.exceptions.SkillNotFoundException;
 import com.employeeAPI.employeeskills.models.Skill;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,33 +36,34 @@ class SkillController {
         repository.addSkillToEmployee(newSkill.getId(), employeeId);
         return newSkill;
     }
-/*
-    @GetMapping("/employees/{id}")
-    Employee one(@PathVariable String id) {
 
-        return repository.findById(id)
-                .orElseThrow(() -> new EmployeeNotFoundException(id));
+    @GetMapping("/employees/{employeeId}/skills/{skillId}")
+    Skill getEmployeeSkillBySkillId(@PathVariable String employeeId,@PathVariable String skillId) {
+        Skill foundSkill = repository.findEmployeeSkillBySkillId(employeeId, skillId);
+        if (foundSkill != null) {
+            return foundSkill;
+        } else {
+            throw new SkillNotFoundException(employeeId, skillId);
+        }
     }
-
-    @PutMapping("/employees/{id}")
-    Employee replaceEmployee(@RequestBody Employee newEmployee, @PathVariable String id) {
+/*
+    @PutMapping("/employees/{employeeId}/skill/{skillId}")
+    Skill replaceSkill(@RequestBody Skill newSkill, @PathVariable String employeeId, String skillId) {
 
         return repository.findById(id)
-                .map(employee -> {
-                    employee.setFirstName(newEmployee.getFirstName());
-                    employee.setLastName(newEmployee.getLastName());
-                    employee.setContactEmail(newEmployee.getContactEmail());
-                    employee.setBirthDate(newEmployee.getBirthDate());
-                    employee.setHiredDate(newEmployee.getHiredDate());
-                    employee.setRole(newEmployee.getRole());
-                    employee.setBusinessUnit(newEmployee.getBusinessUnit());
-                    return repository.save(employee);
+                .map(skill -> {
+                    skill.setField(newSkill.getField());
+                    skill.setExperience(newSkill.getExperience());
+                    skill.setSummary(newSkill.getSummary());
+                    return repository.save(skill);
                 })
                 .orElseGet(() -> {
-                    newEmployee.setId(id);
-                    return repository.save(newEmployee);
+                    newSkill.setId(id);
+                    return repository.save(newSkill);
                 });
     }
+
+
     @DeleteMapping("/employees/{id}")
     void deleteEmployee(@PathVariable String id) {
         repository.deleteById(id);
