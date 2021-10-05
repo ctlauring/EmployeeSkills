@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface SkillRepository extends JpaRepository<Skill, String>{
 
-    @Query("SELECT * FROM SKILL" +
+/*    @Query("SELECT * FROM SKILL" +
             " JOIN EMPLOYEE_SKILLS ON SKILLS.ID = EMPLOYEE_SKILLS.SKILLS_ID WHERE employee.employeeId = :employeeId ")
     List<Skill> findByEmployeeId(
-            @Param("employeeId") String employeeId);
+            @Param("employeeId") String employeeId);*/
 }

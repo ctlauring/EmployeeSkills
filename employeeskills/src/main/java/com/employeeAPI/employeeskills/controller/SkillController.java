@@ -24,10 +24,10 @@ class SkillController {
         this.repository = repository;
     }
 
-    @GetMapping("/employees/{employeeId}/skills")
+/*    @GetMapping("/employees/{employeeId}/skills")
     List<Skill> getSkillsByEmployeeId(@PathVariable String employeeId) {
         return repository.findByEmployeeId(employeeId);
-    }
+    }*/
 
 /*
     @PostMapping("/employees")

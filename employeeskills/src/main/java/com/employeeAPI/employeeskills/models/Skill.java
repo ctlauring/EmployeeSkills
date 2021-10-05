@@ -9,7 +9,7 @@ public class Skill {
     private @Id
     @GeneratedValue(generator="system-uuid") @GenericGenerator(name="system-uuid",
             strategy = "uuid") String id;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Field field;
     private int experience;
     private String summary;
