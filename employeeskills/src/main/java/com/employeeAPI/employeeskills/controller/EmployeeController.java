@@ -2,9 +2,11 @@ package com.employeeAPI.employeeskills.controller;
 
 
 import java.util.List;
+import java.util.UUID;
 
 import com.employeeAPI.employeeskills.dao.EmployeeRepository;
 import com.employeeAPI.employeeskills.exceptions.EmployeeNotFoundException;
+import com.employeeAPI.employeeskills.exceptions.InvalidIDFormatException;
 import com.employeeAPI.employeeskills.models.Employee;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +33,9 @@ class EmployeeController {
     @GetMapping("/employees/{id}")
     Employee one(@PathVariable String id) {
 
+        if (id.length() != 32) {
+            throw new InvalidIDFormatException();
+        }
         return repository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException());
     }
