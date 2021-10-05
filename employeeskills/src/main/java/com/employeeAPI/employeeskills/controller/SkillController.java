@@ -46,24 +46,26 @@ class SkillController {
             throw new SkillNotFoundException(employeeId, skillId);
         }
     }
-/*
-    @PutMapping("/employees/{employeeId}/skill/{skillId}")
-    Skill replaceSkill(@RequestBody Skill newSkill, @PathVariable String employeeId, String skillId) {
 
-        return repository.findById(id)
-                .map(skill -> {
-                    skill.setField(newSkill.getField());
-                    skill.setExperience(newSkill.getExperience());
-                    skill.setSummary(newSkill.getSummary());
-                    return repository.save(skill);
-                })
-                .orElseGet(() -> {
-                    newSkill.setId(id);
-                    return repository.save(newSkill);
-                });
+    @PutMapping("/employees/{employeeId}/skills/{skillId}")
+    Skill replaceSkill(@RequestBody Skill newSkill, @PathVariable String employeeId,@PathVariable String skillId) {
+        Skill existingSkill = repository.findEmployeeSkillBySkillId(employeeId, skillId);
+        if (existingSkill != null) {
+            return repository.findById(skillId)
+                    .map(skill -> {
+                        skill.setField(newSkill.getField());
+                        skill.setExperience(newSkill.getExperience());
+                        skill.setSummary(newSkill.getSummary());
+                        return repository.save(skill);
+                    }).orElseGet(() -> {
+                        throw new SkillNotFoundException(employeeId,skillId);
+                    });
+        } else {
+            throw new SkillNotFoundException(employeeId, skillId);
+        }
     }
 
-
+/*
     @DeleteMapping("/employees/{id}")
     void deleteEmployee(@PathVariable String id) {
         repository.deleteById(id);
