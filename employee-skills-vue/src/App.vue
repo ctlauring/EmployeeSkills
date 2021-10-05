@@ -1,7 +1,7 @@
 <template>
   <div class="main" id="app">
       <div id="nav">
-        <router-link v-bind:to="{ name: 'home' }"><button>Home</button></router-link>
+        <home></home>
       </div>
     <router-view />
   </div>

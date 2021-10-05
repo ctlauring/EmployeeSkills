@@ -1,17 +1,22 @@
 <template>
   <div class="employee-list">
-      <h1>Employee List</h1>
+      <h2>Employee List</h2>
+      <p v-for="employee in allEmployees" :key="employee.id">
+          {{employee.id}} -- {{employee.firstName}} -- {{employee.lastName}} -- {{employee.address}} -- {{employee.contactEmail}} -- {{employee.birthDate}}
+          -- {{employee.role}} -- {{employee.businessUnit}}
+      </p>
       <button
       @click.prevent="listEmployees"
       class="btn block-cube block-cube-hover"
       type="button"
-    > call api
+    > List Employees
     </button>
   </div>    
 </template>
 
 <script>
 import EmployeeService from "@/services/EmployeeService.js"
+import axios from "axios"
 export default {
     name: "employee-list",
     components: {},
@@ -20,6 +25,12 @@ export default {
         return {
             allEmployees: []
         }
+    },
+    async mounted()
+    {
+        let result = await axios.get("http://localhost:8080/employees");
+        console.warn(result.data.data)
+        this.allEmployees=result.data.data
     },
 
     created() {
