@@ -29,9 +29,9 @@ class LoadDatabase {
         skillsList.add(new Skill(new Field("Field of not being skilled", "not new"), 7, "Building"));
 
         ArrayList<Skill> skillsList2 = new ArrayList<>();
-        skillsList.add(new Skill(new Field("Archeology", "new"), 4, "Fossils"));
-        skillsList.add(new Skill(new Field("Research", "old"), 6, "Books"));
-        skillsList.add(new Skill(new Field("IT", "not new"), 2, "Computers"));
+        skillsList2.add(new Skill(new Field("Archeology", "new"), 4, "Fossils"));
+        skillsList2.add(new Skill(new Field("Research", "old"), 6, "Books"));
+        skillsList2.add(new Skill(new Field("IT", "not new"), 2, "Computers"));
 
         return args -> {
             log.info("Preloading " + repository.save(new Employee("Chace", "Lauring", new Address("wah street", "suite 1", "Detroit", "MI", "19183", "US"), "wah@gmail.com", "7/17/1994",

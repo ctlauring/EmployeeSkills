@@ -4,6 +4,13 @@
           <h2>Update an employee</h2>
             <div class="form-holder">
                 <input
+                    v-model="employee.id"
+                    name="id"
+                    placeholder="Employee ID"
+                    type="text"
+                    required
+                />
+                <input
                     v-model="employee.firstName"
                     name="firstName"
                     placeholder="First Name"
@@ -94,15 +101,9 @@
                     type="text"
                     required
                 />
-                <input
-                    v-model="employee.assignedTo"
-                    name="assignedTo"
-                    placeholder="Assigned to..."
-                    type="text"
-                    required
-                />
+
                <button
-                @click.prevent="createEmployee"
+                @click.prevent="updateEmployee"
                 class="btn block-cube block-cube-hover"
                 type="button"
                 > Update Employee
@@ -131,8 +132,6 @@ export default {
                 hiredDate: "",
                 role: "",
                 businessUnit: "",
-                skills: {},
-                assignedTo: ""
             },
 
         }
