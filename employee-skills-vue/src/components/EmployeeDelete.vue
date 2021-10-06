@@ -1,7 +1,7 @@
 <template>
-  <div class="employee-selector">
+  <div class="employee-delete">
       <div class="search-bar">
-          <h2>Get an employee</h2>
+          <h2>Delete an employee</h2>
             <div class="form-holder">
               <input
                 class="form-control"
@@ -10,7 +10,7 @@
                 v-model="employeeId"
               />
                <button
-                @click.prevent="getEmployee"
+                @click.prevent="deleteEmployee"
                 class="btn block-cube block-cube-hover"
                 type="button"
                 > Get employee by ID
@@ -24,7 +24,7 @@
 import EmployeeService from "@/services/EmployeeService.js"
 
 export default {
-    name: "employee-selector",
+    name: "employee-delete",
     components: {},
 
     data() {
@@ -35,8 +35,8 @@ export default {
     },
 
     methods: {
-    getEmployee() {
-        EmployeeService.getEmployee(this.employeeId)
+    deleteEmployee() {
+        EmployeeService.deleteEmployee(this.employeeId)
         .then((employeeData) => {
             console.log(employeeData)
             this.employee = employeeData.data;

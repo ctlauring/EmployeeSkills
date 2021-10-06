@@ -25,6 +25,7 @@ class EmployeeController {
         return repository.findAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:8081")
     @PostMapping("/employees")
     Employee newEmployee(@RequestBody Employee newEmployee) {
         return repository.save(newEmployee);
@@ -63,6 +64,8 @@ class EmployeeController {
                     return repository.save(newEmployee);
                 });
     }
+
+    @CrossOrigin(origins = "http://localhost:8081" )
     @DeleteMapping("/employees/{id}")
     void deleteEmployee(@PathVariable String id) {
 

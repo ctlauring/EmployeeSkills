@@ -3,6 +3,9 @@
     <h1>Employee Skills Application</h1>
     <employee-list />
     <employee-selector />
+    <employee-delete  />
+    <employee-post />
+    <employee-put />
     
     
     <router-view />
@@ -12,10 +15,13 @@
 <script>
 import EmployeeList from "@/components/EmployeeList.vue";
 import EmployeeSelector from "@/components/EmployeeSelector.vue"
+import EmployeeDelete from "@/components/EmployeeDelete.vue"
+import EmployeePost from "@/components/EmployeePost.vue"
+import EmployeePut from "@/components/EmployeePut.vue"
 
 export default {
   name: "home",
-  components: { EmployeeList, EmployeeSelector },
+  components: { EmployeeList, EmployeeSelector, EmployeeDelete, EmployeePost, EmployeePut },
 };
 </script>
 
