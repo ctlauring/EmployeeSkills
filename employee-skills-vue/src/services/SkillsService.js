@@ -3,12 +3,8 @@ import axios from 'axios';
 
 
 export default{
-    listEmployees() {
-        return axios.get('/employees');
-    },
-
-    getEmployee(employeeId) {
-        return axios.get(`/employees/${employeeId}`)
+    getEmployeeSkills(employeeId) {
+        return axios.get(`/employees/${employeeId}/skills`)
     },
 
     deleteEmployee(employeeId) {
