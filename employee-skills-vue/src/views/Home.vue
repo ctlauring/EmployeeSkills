@@ -1,7 +1,8 @@
 <template>
   <div class="home">
-    <h1>Employee Skills</h1>
+    <h1>Employee Skills Application</h1>
     <employee-list />
+    <employee-selector />
     
     
     <router-view />
@@ -10,10 +11,11 @@
 
 <script>
 import EmployeeList from "@/components/EmployeeList.vue";
+import EmployeeSelector from "@/components/EmployeeSelector.vue"
 
 export default {
   name: "home",
-  components: { EmployeeList },
+  components: { EmployeeList, EmployeeSelector },
 };
 </script>
 

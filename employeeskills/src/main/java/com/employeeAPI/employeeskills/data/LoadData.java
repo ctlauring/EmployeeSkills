@@ -24,14 +24,20 @@ class LoadDatabase {
     CommandLineRunner initDatabase(EmployeeRepository repository) {
 
         ArrayList<Skill> skillsList = new ArrayList<>();
-
         skillsList.add(new Skill(new Field("Field of being skilled", "new"), 2, "Hacking"));
         skillsList.add(new Skill(new Field("Field of being skilled123", "old"), 5, "Hackerman"));
         skillsList.add(new Skill(new Field("Field of not being skilled", "not new"), 7, "Building"));
 
+        ArrayList<Skill> skillsList2 = new ArrayList<>();
+        skillsList.add(new Skill(new Field("Archeology", "new"), 4, "Fossils"));
+        skillsList.add(new Skill(new Field("Research", "old"), 6, "Books"));
+        skillsList.add(new Skill(new Field("IT", "not new"), 2, "Computers"));
+
         return args -> {
             log.info("Preloading " + repository.save(new Employee("Chace", "Lauring", new Address("wah street", "suite 1", "Detroit", "MI", "19183", "US"), "wah@gmail.com", "7/17/1994",
-                    "10/04/2021", "yo", "ay", skillsList)));
+                    "10/04/2021", "Developer", "Information Technology", skillsList)));
+            log.info("Preloading " + repository.save(new Employee("Pierce", "Lauring", new Address("where street", "suite 2", "Bloomfield Hills", "MI", "48921", "US"), "who@gmail.com", "2/21/1921",
+                    "16/09/2021", "Manager", "Information Technology", skillsList2)));
         };
     }
 }

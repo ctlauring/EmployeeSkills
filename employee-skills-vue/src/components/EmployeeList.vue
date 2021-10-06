@@ -9,7 +9,7 @@
       @click.prevent="listEmployees"
       class="btn block-cube block-cube-hover"
       type="button"
-    > List Employees
+    > Get all employees
     </button>
   </div>    
 </template>

@@ -30,6 +30,7 @@ class EmployeeController {
         return repository.save(newEmployee);
     }
 
+    @CrossOrigin(origins = "http://localhost:8081")
     @GetMapping("/employees/{id}")
     Employee one(@PathVariable String id) {
 
@@ -41,6 +42,10 @@ class EmployeeController {
     }
     @PutMapping("/employees/{id}")
     Employee replaceEmployee(@RequestBody Employee newEmployee, @PathVariable String id) {
+
+        if (id.length() != 32) {
+            throw new InvalidIDFormatException();
+        }
 
         return repository.findById(id)
                 .map(employee -> {
@@ -60,6 +65,10 @@ class EmployeeController {
     }
     @DeleteMapping("/employees/{id}")
     void deleteEmployee(@PathVariable String id) {
+
+        if (id.length() != 32) {
+            throw new InvalidIDFormatException();
+        }
         repository.deleteById(id);
     }
 }

@@ -7,6 +7,10 @@ export default{
         return axios.get('/employees');
     },
 
+    getEmployee(employeeId) {
+        return axios.get(`/employees/${employeeId}`)
+    },
+
     // retrieve(userID) {
     //     return axios.get(`/api/tournamentByUser/${userID}`);
     // },
