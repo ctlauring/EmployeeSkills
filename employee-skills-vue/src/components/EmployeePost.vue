@@ -94,13 +94,6 @@
                     type="text"
                     required
                 />
-                <input
-                    v-model="employee.assignedTo"
-                    name="assignedTo"
-                    placeholder="Assigned to..."
-                    type="text"
-                    required
-                />
                <button
                 @click.prevent="createEmployee"
                 class="btn block-cube block-cube-hover"
@@ -122,7 +115,6 @@ export default {
     data() {
         return {
             employee: {
-                id: "",
                 firstName: "",
                 lastName: "",
                 address: {street: "", suite: "", city: "", region: "", postal: "", country: ""},
@@ -131,8 +123,6 @@ export default {
                 hiredDate: "",
                 role: "",
                 businessUnit: "",
-                skills: {},
-                assignedTo: ""
             },
 
         }
