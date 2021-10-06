@@ -11,8 +11,12 @@ export default{
         return axios.delete(`/employees/${employeeId}`)
     },
 
-     createEmployee(employee) {
-         return axios.post('/employees',employee);
+     addSkill(skill,employeeId) {
+         return axios.post(`/employees/${employeeId}/skills`,skill, {
+            headers: {
+              'content-type': 'application/json'
+            }
+          });
      },
 
      updateEmployee(employee) {

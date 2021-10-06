@@ -8,13 +8,7 @@ import com.employeeAPI.employeeskills.exceptions.InvalidIDFormatException;
 import com.employeeAPI.employeeskills.exceptions.SkillNotFoundException;
 import com.employeeAPI.employeeskills.models.Skill;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 class SkillController {
@@ -36,6 +30,7 @@ class SkillController {
     }
 
     @Transactional
+    @CrossOrigin(origins = "http://localhost:8081" )
     @PostMapping("/employees/{employeeId}/skills")
     Skill postSkill(@RequestBody Skill newSkill, @PathVariable String employeeId ) {
 

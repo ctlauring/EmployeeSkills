@@ -7,6 +7,7 @@
     <employee-post />
     <employee-put />
     <skills-list />
+    <skill-post />
     
     
     <router-view />
@@ -20,10 +21,12 @@ import EmployeeDelete from "@/components/EmployeeDelete.vue"
 import EmployeePost from "@/components/EmployeePost.vue"
 import EmployeePut from "@/components/EmployeePut.vue"
 import SkillsList from '@/components/SkillsList.vue';
+import SkillPost from '@/components/SkillPost.vue';
+
 
 export default {
   name: "home",
-  components: { EmployeeList, EmployeeSelector, EmployeeDelete, EmployeePost, EmployeePut, SkillsList },
+  components: { EmployeeList, EmployeeSelector, EmployeeDelete, EmployeePost, EmployeePut, SkillsList, SkillPost },
 };
 </script>
 
